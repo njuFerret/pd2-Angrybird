@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="ground.png">image/GROUND.png</file>
+        <file alias="bird.png">image/Normal_Bird_1.png</file>
+        <file>image/a.png</file>
+        <file>image/b.png</file>
+        <file alias="barrier">image/barrier.png</file>
+        <file>image/c.png</file>
+        <file>image/d.png</file>
+        <file>image/e.png</file>
+        <file alias="enemy">image/enemy.png</file>
+        <file alias="bg">image/Wiki-background.png</file>
+        <file alias="gd">image/ground.jpg</file>
+        <file alias="exit">image/exit.png</file>
+        <file alias="restart">image/restart.png</file>
+        <file alias="shoot">image/shooter.png</file>
+    </qresource>
+</RCC>
