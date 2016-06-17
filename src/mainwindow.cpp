@@ -50,6 +50,7 @@ void MainWindow::showEvent(QShowEvent *)
     itemList.push_back(new Barrier(17.25f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
     itemList.push_back(new Barrier(17.25f,16.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
     itemList.push_back(new Barrier(17.25f,20.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+    itemList.push_back(new Barrier(12.00f,6.25f,1.00f,4.0f,&timer,QPixmap("").scaled(0,0),world,scene));
 
     button *quit = new button();
     quit->setPos(734,10);
@@ -73,12 +74,12 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         a = (E->x())/20.0f;    //   get the coordinate of px
         b = 30 - (E->y())/20.0f;
 //        std::cout<< E->x() << " " << E->y() << std::endl;   // for debug   check the px
-        if(E->x()< 160 && E->y() < 500){
-//            Bird *birdie = new Bird(a,b,1.05f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
-            birdie = new yellowb(a,b,1.05f,&timer,QPixmap(":/y").scaled(50,50),world,scene);
+        if(E->x()< 245 && E->y() < 500){
+            /*Bird **/birdie = new Bird(a,b,1.05f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
+//            birdie = new yellowb(a,b,1.05f,&timer,QPixmap(":/y").scaled(50,50),world,scene);
 
-            vx = -3*(a - 8);
-            vy = -3*(b - 8);
+            vx = -1.5*(a - 12);
+            vy = -1.5*(b - 13.5);
             birdie->setLinearVelocity(b2Vec2(vx,vy));
             itemList.push_back(birdie);
             return true;
