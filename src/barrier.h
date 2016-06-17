@@ -6,7 +6,7 @@
 #include <QGraphicsScene>
 #include <QTimer>
 
-#define BARRIER_DENSITY 5.0f
+#define BARRIER_DENSITY 20.0f
 #define BARRIER_FRICTION 0.8f
 #define BARRIER_RESTITUTION 0.3f
 

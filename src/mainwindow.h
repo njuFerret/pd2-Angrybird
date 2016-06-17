@@ -46,6 +46,7 @@ private:
     b2World *world;
     QList<GameItem *> itemList;
     QTimer timer;
+    Bird * birdie;
 };
 
 #endif // MAINWINDOW_H
