@@ -16,6 +16,7 @@
 #include <bird.h>
 #include <barrier.h>
 #include <enemy.h>
+#include <yellowb.h>
 
 namespace Ui {
 class MainWindow;

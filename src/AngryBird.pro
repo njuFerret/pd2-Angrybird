@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     land.cpp \
     barrier.cpp \
     enemy.cpp \
-    button.cpp
+    button.cpp \
+    yellowb.cpp
 
 HEADERS  += mainwindow.h \
     Box2D/Collision/Shapes/b2ChainShape.h \
@@ -74,7 +75,8 @@ HEADERS  += mainwindow.h \
     land.h \
     barrier.h \
     enemy.h \
-    button.h
+    button.h \
+    yellowb.h
 
 FORMS    += mainwindow.ui
 

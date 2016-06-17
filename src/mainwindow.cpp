@@ -74,7 +74,9 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         b = 30 - (E->y())/20.0f;
 //        std::cout<< E->x() << " " << E->y() << std::endl;   // for debug   check the px
         if(E->x()< 160 && E->y() < 500){
-            Bird *birdie = new Bird(a,b,1.05f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
+//            Bird *birdie = new Bird(a,b,1.05f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
+            birdie = new yellowb(a,b,1.05f,&timer,QPixmap(":/y").scaled(50,50),world,scene);
+
             vx = -3*(a - 8);
             vy = -3*(b - 8);
             birdie->setLinearVelocity(b2Vec2(vx,vy));

@@ -15,6 +15,7 @@ class Bird : public GameItem
 public:
     Bird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
     void setLinearVelocity(b2Vec2 velocity);
+//    virtual void special();
 };
 
 #endif // BIRD_H
