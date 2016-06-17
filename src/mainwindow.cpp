@@ -52,7 +52,7 @@ void MainWindow::showEvent(QShowEvent *)
     itemList.push_back(new Barrier(17.25f,20.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
 
     button *quit = new button();
-    quit->setPos(750,10);
+    quit->setPos(734,10);
     quit->setPixmap(QPixmap(":/exit"));
     connect(quit,SIGNAL(clicked()),this,SLOT(quitslot()));
     scene->addItem(quit);
