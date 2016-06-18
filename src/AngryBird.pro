@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     yellowb.cpp \
     whiteb.cpp \
     bigb.cpp \
-    egg.cpp
+    egg.cpp \
+    bump.cpp
 
 HEADERS  += mainwindow.h \
     Box2D/Collision/Shapes/b2ChainShape.h \
@@ -82,7 +83,8 @@ HEADERS  += mainwindow.h \
     yellowb.h \
     whiteb.h \
     bigb.h \
-    egg.h
+    egg.h \
+    bump.h
 
 FORMS    += mainwindow.ui
 

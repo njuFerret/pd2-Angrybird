@@ -32,3 +32,30 @@ void GameItem::paint()
     g_pixmap.resetTransform();
     g_pixmap.setRotation(-(g_body->GetAngle()*180/3.14159));
 }
+
+void GameItem::setId(char id){
+    theid = id;
+}
+
+char GameItem::getId(){
+    if(theid == 'e'){
+        return 'e';
+    }else if(theid == 'b'){
+        return 'b';
+    }else if(theid == 'w'){
+        return 'w';
+    }
+    return 0;
+}
+
+void GameItem::collide(){
+
+    deleteLater();
+}
+
+void GameItem::delay(int ms)
+{
+    QTime Late = QTime::currentTime().addMSecs(ms);
+    while (QTime::currentTime() < Late)
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+}

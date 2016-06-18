@@ -20,6 +20,7 @@
 #include <whiteb.h>
 #include <bigb.h>
 #include <egg.h>
+//#include "bump.h"
 
 namespace Ui {
 class MainWindow;
@@ -42,6 +43,7 @@ signals:
     void quitGame();
 
 private slots:
+    void deleteEnemy();
     void tick();
     // For debug slot
     void QUITSLOT();
@@ -55,6 +57,7 @@ private:
     QTimer timer;
     QTimer timer2;
     Bird * birdie;
+    Enemy * enemy;
 //    QList<Bird *> list;
     egg * eggs;
     int cnt,k;

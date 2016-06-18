@@ -36,7 +36,7 @@ void MainWindow::showEvent(QShowEvent *)
 
     // Bird *birdie = new Bird(0.0f,10.0f,0.27f,&timer,QPixmap(":/bird.png").scaled(height()/9.0,height()/9.0),world,scene);
 
-     Enemy *enemy = new Enemy(31.0f,15.0f,1.1f,&timer,QPixmap(":/enemy").scaled(50,50),world,scene);
+     enemy = new Enemy(31.0f,15.0f,1.1f,&timer,QPixmap(":/enemy").scaled(50,50),world,scene);
     // Setting the Velocity
 //    birdie->setLinearVelocity(b2Vec2(8,7));
 //    itemList.push_back(birdie);
@@ -61,10 +61,14 @@ void MainWindow::showEvent(QShowEvent *)
 
     // Timer
     connect(&timer,SIGNAL(timeout()),this,SLOT(tick()));
+    connect(&timer2,SIGNAL(timeout()),this,SLOT(deleteEnemy()));
     connect(this,SIGNAL(quitGame()),this,SLOT(QUITSLOT()));
     timer.start(100/6);
+    timer2.start(1000);
 
     cnt = 0;
+
+//    world->SetContactListener(new bump());
 }
 
 bool MainWindow::eventFilter(QObject *, QEvent *event)
@@ -125,10 +129,10 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
                 cnt++;
                 return true;
             }
-            float vxx, vyy;
-            vxx = birdie->getLinearVelocity().x;
-            vyy = birdie->getLinearVelocity().y;
-            std::cout << vxx << " " << vyy << std::endl;
+//            float vxx, vyy;
+//            vxx = birdie->getLinearVelocity().x;
+//            vyy = birdie->getLinearVelocity().y;
+//            std::cout << vxx << " " << vyy << std::endl;
 //          if (vxx == 0 && vyy == 0){
 //              birdie->g_pixmap.setPixmap(QPixmap(":/r"));
 //             deleteBird();
@@ -156,10 +160,10 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
                 cnt++;
                 return true;
             }
-            float vxx, vyy;
-            vxx = birdie->getLinearVelocity().x;
-            vyy = birdie->getLinearVelocity().y;
-            std::cout << vxx << " " << vyy << std::endl;
+//            float vxx, vyy;
+//            vxx = birdie->getLinearVelocity().x;
+//            vyy = birdie->getLinearVelocity().y;
+//            std::cout << vxx << " " << vyy << std::endl;
 //          if (vxx == 0 && vyy == 0){
 //              birdie->g_pixmap.setPixmap(QPixmap(":/r"));
 //             deleteBird();
@@ -209,10 +213,10 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
 //          j = (press->x())/20.0f;    //   get the coordinate of px
 //          q = 30 - (press->y())/20.0f;
 //          std::cout<< press->x() << " " << press->y() << std::endl;   // for debug   check the px
-            if(press->x() > 240){
+       //     if(press->x() > 240 && press->y()>10){
                 k = birdie->special();
 //                std::cout<< k << std::endl;
-            }
+       //    }
             float vxx, vyy;
             vxx = birdie->getLinearVelocity().x;
             vyy = birdie->getLinearVelocity().y;
@@ -240,6 +244,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
                 }
 
             }
+
         }
     }
     if(event->type() == QEvent::MouseMove)
@@ -277,6 +282,20 @@ void MainWindow::quitslot()
 {
     close();
     delete ui;
+}
+
+void MainWindow::deleteEnemy(){
+    float vx, vy;
+    vx = enemy->getLinearVelocity().x;
+    vy = enemy->getLinearVelocity().y;
+    if(vx!=0 ){
+        enemy->health--;
+        std::cout<<enemy->health;
+    }
+    if(enemy->health==0){
+        delete enemy;
+        timer2.stop();
+    }
 }
 
 //void MainWindow::deleteBird()

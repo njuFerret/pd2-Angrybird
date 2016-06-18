@@ -29,6 +29,8 @@ Bird::Bird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2Worl
     connect(timer, SIGNAL(timeout()), this,SLOT(paint()));
 
     scene->addItem(&g_pixmap);
+
+    setId('b');
 }
 
 void Bird::setLinearVelocity(b2Vec2 velocity)

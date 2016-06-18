@@ -14,6 +14,8 @@ class Enemy : public GameItem
 {
 public:
     Enemy(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
+    int health = 1;
+    b2Vec2 getLinearVelocity();
 };
 
 #endif // ENEMY_H

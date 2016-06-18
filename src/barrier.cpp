@@ -35,6 +35,8 @@ Barrier::Barrier(float x, float y, float w, float h, QTimer *timer, QPixmap pixm
 
     scene->addItem(&g_pixmap);
     paint();
+
+    setId('w');
 }
 
 //void Barrier::setLinearVelocity(b2Vec2 velocity)

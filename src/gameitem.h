@@ -6,6 +6,9 @@
 #include <QPainter>
 #include <QTransform>
 #include <QtMath>
+#include <QTime>
+#include <QApplication>
+#include <qwaitcondition.h>
 
 class GameItem : public QObject
 {
@@ -15,6 +18,9 @@ public:
     ~GameItem();
     static void setGlobalSize(QSizeF worldsize, QSizeF windowsize);
     QGraphicsPixmapItem g_pixmap;
+    void setId(char id);
+    char getId();
+    void collide();
 public slots:
     void paint();
     // TODO virtual void collide();
@@ -25,6 +31,9 @@ protected:
     QSizeF g_size;
     b2World *g_world;
     static QSizeF g_worldsize, g_windowsize;
+    char theid;
+private:
+    void delay(int);
 };
 
 #endif // GAMEITEM_H
