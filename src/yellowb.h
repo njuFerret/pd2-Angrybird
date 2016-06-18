@@ -6,7 +6,7 @@
 class yellowb: public Bird{
 public:
     yellowb(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
-//    virtual void special();
+    virtual int special();
 };
 
 #endif // YELLOWB_H

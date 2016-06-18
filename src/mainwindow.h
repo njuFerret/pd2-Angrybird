@@ -32,6 +32,8 @@ public:
     void showEvent(QShowEvent *);
     bool eventFilter(QObject *,QEvent *event);
     void closeEvent(QCloseEvent *);
+//    void deleteBird();
+
 signals:
     // Signal for closing the game
     void quitGame();
@@ -41,13 +43,17 @@ private slots:
     // For debug slot
     void QUITSLOT();
     void quitslot();
+//    void deleteBird();
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     b2World *world;
     QList<GameItem *> itemList;
     QTimer timer;
+    QTimer timer2;
     Bird * birdie;
+//    QList<Bird *> list;
+    int cnt,k;
 };
 
 #endif // MAINWINDOW_H

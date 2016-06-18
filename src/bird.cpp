@@ -35,3 +35,17 @@ void Bird::setLinearVelocity(b2Vec2 velocity)
 {
     g_body->SetLinearVelocity(velocity);
 }
+b2Vec2 Bird::getLinearVelocity()
+{
+    return g_body->GetLinearVelocity();
+}
+b2Vec2 Bird::getPosition()
+{
+    return g_body->GetPosition();
+}
+
+void Bird::removeBird(QGraphicsScene *scene)
+{
+    scene->removeItem(&g_pixmap);
+}
+int Bird::special(){return 0;}

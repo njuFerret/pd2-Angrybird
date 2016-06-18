@@ -8,6 +8,8 @@ INPUT(
 ./release\enemy.o
 ./release\button.o
 ./release\yellowb.o
+./release\whiteb.o
+./release\bigb.o
 ./release\qrc_res.o
 ./release\moc_mainwindow.o
 ./release\moc_gameitem.o
