@@ -10,6 +10,7 @@
 #include <QMouseEvent>
 #include <iostream>
 #include <button.h>
+#include <iostream>
 
 #include <gameitem.h>
 #include <land.h>
@@ -48,6 +49,7 @@ private slots:
     // For debug slot
     void QUITSLOT();
     void quitslot();
+    void restart();
 //    void deleteBird();
 private:
     Ui::MainWindow *ui;
@@ -57,6 +59,7 @@ private:
     QTimer timer;
     QTimer timer2;
     Bird * birdie;
+    Bird * bird1;
     Enemy * enemy;
 //    QList<Bird *> list;
     egg * eggs;

@@ -17,6 +17,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::showEvent(QShowEvent *)
 {
+
     // Setting the QGraphicsScene
     scene = new QGraphicsScene(0,0,width(),ui->graphicsView->height());
     ui->graphicsView->setScene(scene);
@@ -50,14 +51,20 @@ void MainWindow::showEvent(QShowEvent *)
     itemList.push_back(new Barrier(17.25f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
     itemList.push_back(new Barrier(17.25f,16.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
     itemList.push_back(new Barrier(17.25f,20.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
-    itemList.push_back(new Land(12.00f,6.25f,1.00f,4.0f,QPixmap("").scaled(0,0),world,scene));
-    itemList.push_back(new Land(40.00f,17.5f,1.00f,25.0f,QPixmap("").scaled(0,0),world,scene));
+    itemList.push_back(new Land(12.00f,6.25f,1.00f,4.0f,QPixmap().scaled(0,0),world,scene));
+    itemList.push_back(new Land(40.00f,17.5f,1.00f,25.0f,QPixmap().scaled(0,0),world,scene));
 
     button *quit = new button();
     quit->setPos(734,10);
     quit->setPixmap(QPixmap(":/exit"));
     connect(quit,SIGNAL(clicked()),this,SLOT(quitslot()));
     scene->addItem(quit);
+
+    button *restart = new button();
+    restart->setPos(650,10);
+    restart->setPixmap(QPixmap(":/restart"));
+    connect(restart,SIGNAL(clicked()),this,SLOT(restart()));
+    scene->addItem(restart);
 
     // Timer
     connect(&timer,SIGNAL(timeout()),this,SLOT(tick()));
@@ -118,7 +125,8 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             b = 30 - (E->y())/20.0f;
 //          std::cout<< E->x() << " " << E->y() << std::endl;   // for debug   check the px
             if(E->x()< 245 && E->y() < 500){
-                delete birdie;
+                delete itemList[itemList.size()-1];
+//                delete birdie;
 //              /*Bird **/birdie = new Bird(a,b,1.05f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
                 birdie = new yellowb(a,b,1.05f,&timer,QPixmap(":/y").scaled(50,50),world,scene);
 
@@ -149,7 +157,8 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             b = 30 - (E->y())/20.0f;
 //          std::cout<< E->x() << " " << E->y() << std::endl;   // for debug   check the px
             if(E->x()< 245 && E->y() < 500){
-                delete birdie;
+                delete itemList[itemList.size()-1];
+//                delete birdie;
 //              /*Bird **/birdie = new Bird(a,b,1.05f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
                 birdie = new whiteb(a,b,1.05f,&timer,QPixmap(":/w").scaled(50,50),world,scene);
 
@@ -181,6 +190,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             b = 30 - (E->y())/20.0f;
 //          std::cout<< E->x() << " " << E->y() << std::endl;   // for debug   check the px
             if(E->x()< 245 && E->y() < 500){
+//                delete itemList[itemList.size()-1];
                 delete birdie;
 //              /*Bird **/birdie = new Bird(a,b,1.05f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
                 birdie = new bigb(a,b,1.05f,&timer,QPixmap(":/r").scaled(50,50),world,scene);
@@ -207,7 +217,6 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
 
         }   //switch
         if(cnt != 0){
-            float j,q;
 //          int k;
             QMouseEvent *press = static_cast<QMouseEvent *>(event);
 //          j = (press->x())/20.0f;    //   get the coordinate of px
@@ -221,6 +230,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             vxx = birdie->getLinearVelocity().x;
             vyy = birdie->getLinearVelocity().y;
 //          std::cout << vxx << " " << vyy << std::endl;
+            if(press->x()>240 && press->y()>60){
             switch(k){
                 case 1:{
                     birdie->setLinearVelocity(b2Vec2(vxx*2,vyy));
@@ -231,9 +241,12 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
                     xx = birdie->getPosition().x;
                     yy = birdie->getPosition().y;
                     eggs = new egg(xx,yy-1,0.75f,&timer,QPixmap(":/egg").scaled(30,30),world,scene);
+                    itemList.push_back(eggs);
+                    birdie->setLinearVelocity(b2Vec2(vxx,vyy+5));
                     return true;
                 }
                 case 3:{
+//                    delete itemList[itemList.size()-1];
                     delete birdie;
                     float xx,yy;
                     xx = birdie->getPosition().x;
@@ -242,9 +255,8 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
                     birdie->setLinearVelocity(b2Vec2(vxx,vyy));
 
                 }
-
+                }
             }
-
         }
     }
     if(event->type() == QEvent::MouseMove)
@@ -284,10 +296,37 @@ void MainWindow::quitslot()
     delete ui;
 }
 
+void MainWindow::restart(){
+    delete birdie;
+    timer.stop();
+    for(int i=0;i < itemList.size()-cnt;++i){
+           delete itemList[i];
+    }
+
+   itemList.clear();
+   itemList.push_back(new Land(20,2.5,40,5,QPixmap(":/ground.png").scaled(800,80),world,scene));
+   enemy = new Enemy(31.0f,15.0f,1.1f,&timer,QPixmap(":/enemy").scaled(50,50),world,scene);
+   itemList.push_back(enemy);
+   itemList.push_back(new Barrier(19.00f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+   itemList.push_back(new Barrier(20.00f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+   itemList.push_back(new Barrier(25.00f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+   itemList.push_back(new Barrier(18.00f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+   itemList.push_back(new Barrier(18.00f,16.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+   itemList.push_back(new Barrier(18.00f,20.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+   itemList.push_back(new Barrier(17.25f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+   itemList.push_back(new Barrier(17.25f,16.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+   itemList.push_back(new Barrier(17.25f,20.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+   itemList.push_back(new Land(12.00f,6.25f,1.00f,4.0f,QPixmap().scaled(0,0),world,scene));
+   itemList.push_back(new Land(40.00f,17.5f,1.00f,25.0f,QPixmap().scaled(0,0),world,scene));
+
+   cnt = 0;
+   timer.start();
+
+}
+
 void MainWindow::deleteEnemy(){
-    float vx, vy;
+    float vx;
     vx = enemy->getLinearVelocity().x;
-    vy = enemy->getLinearVelocity().y;
     if(vx!=0 ){
         enemy->health--;
         std::cout<<enemy->health;
