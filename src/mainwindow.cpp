@@ -147,7 +147,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             if(E->x()< 245 && E->y() < 500){
                 delete birdie;
 //              /*Bird **/birdie = new Bird(a,b,1.05f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
-                birdie = new yellowb(a,b,1.05f,&timer,QPixmap(":/w").scaled(50,50),world,scene);
+                birdie = new whiteb(a,b,1.05f,&timer,QPixmap(":/w").scaled(50,50),world,scene);
 
                 vx = -1.5*(a - 12);
                 vy = -1.5*(b - 13.5);
@@ -177,8 +177,9 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             b = 30 - (E->y())/20.0f;
 //          std::cout<< E->x() << " " << E->y() << std::endl;   // for debug   check the px
             if(E->x()< 245 && E->y() < 500){
+                delete birdie;
 //              /*Bird **/birdie = new Bird(a,b,1.05f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
-                birdie = new yellowb(a,b,1.05f,&timer,QPixmap(":/r").scaled(50,50),world,scene);
+                birdie = new bigb(a,b,1.05f,&timer,QPixmap(":/r").scaled(50,50),world,scene);
 
                 vx = -1.5*(a - 12);
                 vy = -1.5*(b - 13.5);
@@ -210,7 +211,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
 //          std::cout<< press->x() << " " << press->y() << std::endl;   // for debug   check the px
             if(press->x() > 240){
                 k = birdie->special();
-                std::cout<< k << std::endl;
+//                std::cout<< k << std::endl;
             }
             float vxx, vyy;
             vxx = birdie->getLinearVelocity().x;
@@ -218,14 +219,26 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
 //          std::cout << vxx << " " << vyy << std::endl;
             switch(k){
                 case 1:{
-                    birdie->setLinearVelocity(b2Vec2(vxx*5,vyy));
-                    k++;
+                    birdie->setLinearVelocity(b2Vec2(vxx*2,vyy));
                     break;
                 }
                 case 2:{
-
+                    float xx,yy;
+                    xx = birdie->getPosition().x;
+                    yy = birdie->getPosition().y;
+                    eggs = new egg(xx,yy-1,0.75f,&timer,QPixmap(":/egg").scaled(30,30),world,scene);
+                    return true;
+                }
+                case 3:{
+                    delete birdie;
+                    float xx,yy;
+                    xx = birdie->getPosition().x;
+                    yy = birdie->getPosition().y;
+                    birdie = new bigb(xx,yy,1.5f,&timer,QPixmap(":/r").scaled(63,63),world,scene);
+                    birdie->setLinearVelocity(b2Vec2(vxx,vyy));
 
                 }
+
             }
         }
     }

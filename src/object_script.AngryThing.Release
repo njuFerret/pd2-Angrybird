@@ -10,6 +10,7 @@ INPUT(
 ./release\yellowb.o
 ./release\whiteb.o
 ./release\bigb.o
+./release\egg.o
 ./release\qrc_res.o
 ./release\moc_mainwindow.o
 ./release\moc_gameitem.o

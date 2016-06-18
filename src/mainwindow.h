@@ -17,6 +17,9 @@
 #include <barrier.h>
 #include <enemy.h>
 #include <yellowb.h>
+#include <whiteb.h>
+#include <bigb.h>
+#include <egg.h>
 
 namespace Ui {
 class MainWindow;
@@ -53,6 +56,7 @@ private:
     QTimer timer2;
     Bird * birdie;
 //    QList<Bird *> list;
+    egg * eggs;
     int cnt,k;
 };
 

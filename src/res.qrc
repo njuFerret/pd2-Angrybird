@@ -14,5 +14,6 @@
         <file alias="exit">image/exit.png</file>
         <file alias="restart">image/restart.png</file>
         <file alias="shoot">image/shooter.png</file>
+        <file alias="egg">image/egg.png</file>
     </qresource>
 </RCC>
