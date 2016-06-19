@@ -9,7 +9,6 @@ class button :public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-//    button();
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
 
 signals:

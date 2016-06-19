@@ -21,7 +21,7 @@
 #include <whiteb.h>
 #include <bigb.h>
 #include <egg.h>
-//#include "bump.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -59,9 +59,7 @@ private:
     QTimer timer;
     QTimer timer2;
     Bird * birdie;
-    Bird * bird1;
     Enemy * enemy;
-//    QList<Bird *> list;
     egg * eggs;
     int cnt,k,tmp;
 };
