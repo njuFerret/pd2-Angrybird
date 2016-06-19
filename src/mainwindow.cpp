@@ -144,7 +144,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
                     delete itemList[ i ];
                 }
                 birdie = new bigb(a,b,1.05f,&timer,QPixmap(":/r").scaled(50,50),world,scene);
-                std::cout<<itemList.size()<<std::endl;
+//                std::cout<<itemList.size()<<std::endl;
                 vx = -1.5*(a - 12);
                 vy = -1.5*(b - 13.5);
                 birdie->setLinearVelocity(b2Vec2(vx,vy));
