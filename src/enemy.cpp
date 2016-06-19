@@ -29,8 +29,6 @@ Enemy::Enemy(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2Wo
     connect(timer, SIGNAL(timeout()), this,SLOT(paint()));
 
     scene->addItem(&g_pixmap);
-
-    setId('e');
 }
 
 b2Vec2 Enemy::getLinearVelocity(){

@@ -63,7 +63,7 @@ private:
     Enemy * enemy;
 //    QList<Bird *> list;
     egg * eggs;
-    int cnt,k;
+    int cnt,k,tmp;
 };
 
 #endif // MAINWINDOW_H

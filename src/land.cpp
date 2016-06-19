@@ -18,5 +18,4 @@ Land::Land(float x, float y, float w, float h, QPixmap pixmap, b2World *world, Q
     scene->addItem(&g_pixmap);
     paint();
 
-    setId('l');
 }
