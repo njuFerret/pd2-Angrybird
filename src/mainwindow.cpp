@@ -55,7 +55,7 @@ void MainWindow::showEvent(QShowEvent *)
     restart->setPos(650,10);
     restart->setPixmap(QPixmap(":/restart"));
     connect(restart,SIGNAL(clicked()),this,SLOT(restart()));
-    scene->addItem(restart);
+    scene->addItem(restart); 
 
     // Timer
     connect(&timer,SIGNAL(timeout()),this,SLOT(tick()));
@@ -221,30 +221,32 @@ void MainWindow::quitslot()
 }
 
 void MainWindow::restart(){
-    delete birdie;
-    timer.stop();
-    for(int i=0;i < itemList.size()-cnt;++i){
-        delete itemList[i];
-    }
 
-   itemList.clear();
-   itemList.push_back(new Land(20,2.5,40,5,QPixmap(":/ground.png").scaled(800,80),world,scene));
-   enemy = new Enemy(31.0f,15.0f,1.1f,&timer,QPixmap(":/enemy").scaled(50,50),world,scene);
-   itemList.push_back(enemy);
-   itemList.push_back(new Barrier(19.00f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
-   itemList.push_back(new Barrier(20.00f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
-   itemList.push_back(new Barrier(25.00f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
-   itemList.push_back(new Barrier(18.00f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
-   itemList.push_back(new Barrier(18.00f,16.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
-   itemList.push_back(new Barrier(18.00f,20.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
-   itemList.push_back(new Barrier(17.25f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
-   itemList.push_back(new Barrier(17.25f,16.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
-   itemList.push_back(new Barrier(17.25f,20.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
-   itemList.push_back(new Land(12.00f,6.25f,1.00f,4.0f,QPixmap().scaled(0,0),world,scene));
-   itemList.push_back(new Land(40.00f,17.5f,1.00f,25.0f,QPixmap().scaled(0,0),world,scene));
+    qApp->exit( MainWindow::Exit);
+//    delete birdie;
+//    timer.stop();
+//    for(int i=0;i < itemList.size()-cnt;++i){
+//        delete itemList[i];
+//    }
 
-   cnt = 0;
-   timer.start();
+//   itemList.clear();
+//   itemList.push_back(new Land(20,2.5,40,5,QPixmap(":/ground.png").scaled(800,80),world,scene));
+//   enemy = new Enemy(31.0f,15.0f,1.1f,&timer,QPixmap(":/enemy").scaled(50,50),world,scene);
+//   itemList.push_back(enemy);
+//   itemList.push_back(new Barrier(19.00f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+//   itemList.push_back(new Barrier(20.00f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+//   itemList.push_back(new Barrier(25.00f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+//   itemList.push_back(new Barrier(18.00f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+//   itemList.push_back(new Barrier(18.00f,16.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+//   itemList.push_back(new Barrier(18.00f,20.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+//   itemList.push_back(new Barrier(17.25f,12.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+//   itemList.push_back(new Barrier(17.25f,16.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+//   itemList.push_back(new Barrier(17.25f,20.0f,0.75f,3.0f,&timer,QPixmap(":/barrier").scaled(15,60),world,scene));
+//   itemList.push_back(new Land(12.00f,6.25f,1.00f,4.0f,QPixmap().scaled(0,0),world,scene));
+//   itemList.push_back(new Land(40.00f,17.5f,1.00f,25.0f,QPixmap().scaled(0,0),world,scene));
+
+//   cnt = 0;
+//   timer.start();
 
 }
 
@@ -260,3 +262,5 @@ void MainWindow::deleteEnemy(){
         timer2.stop();
     }
 }
+
+int const MainWindow::Exit = 87;

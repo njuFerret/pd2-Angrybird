@@ -38,6 +38,7 @@ public:
     bool eventFilter(QObject *,QEvent *event);
     void closeEvent(QCloseEvent *);
 //    void deleteBird();
+        static int const Exit;
 
 signals:
     // Signal for closing the game
@@ -52,6 +53,7 @@ private slots:
     void restart();
 //    void deleteBird();
 private:
+
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     b2World *world;
